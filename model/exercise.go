@@ -21,7 +21,7 @@ func NewExercise(name, videoLink string) Exercise {
 }
 
 //addSet adds new rap,intensity into the Exercise
-func (e *Exercise) addSet(_rep float64, _intensity float64) {
+func (e *Exercise) AddSet(_rep float64, _intensity float64) {
 	rep := _rep             //rep array
 	intensity := _intensity //intensity array
 	e.Sets = append(e.Sets, rep)
