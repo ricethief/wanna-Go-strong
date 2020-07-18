@@ -17,7 +17,7 @@ func NewDay(dateName string) Day {
 }
 
 //addExercise
-func (d *Day) AddDay(e Exercise) {
+func (d *Day) AddExercise(e Exercise) {
 	d.ExerciseList = append(d.ExerciseList, e)
 
 	fmt.Println(e, "added into", d)
