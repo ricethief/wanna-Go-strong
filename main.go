@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 	"wanna-Go-strong/model"
 
 	"github.com/gorilla/mux"
@@ -39,7 +40,10 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	testing()
 	modelthing()
 	json.NewEncoder(w).Encode(modelthing())
-	fmt.Fprintf(w, "\nVisited time")
+	fmt.Fprintf(w, "\nVisited time", time.Now())
+	vars := mux.Vars(r)
+	a := vars["a"]
+	fmt.Fprintf(w, "\n", a)
 }
 
 func methpage(w http.ResponseWriter, r *http.Request) {
@@ -74,7 +78,7 @@ func modelthing() model.Week {
 
 func handleRequest() {
 	myRouter := mux.NewRouter().StrictSlash(true)
-	myRouter.HandleFunc("/", homePage)
+	myRouter.HandleFunc("/home/{a}", homePage)
 
 	myRouter.HandleFunc("/add", methpage)
 	myRouter.HandleFunc("/articles", allArticles).Methods("GET")
