@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"time"
 	"wanna-Go-strong/model"
+	"wanna-Go-strong/workoutPkg"
 
 	"github.com/gorilla/mux"
 )
@@ -16,7 +17,7 @@ import (
 func testingit() {
 	list1 := list.New()
 	list1.PushBack("")
-
+	workoutPkg.DefaultTraining()
 }
 
 type Article struct {
