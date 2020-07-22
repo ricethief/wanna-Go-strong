@@ -140,7 +140,7 @@ var MRVCalcSheet = map[string]float64{
 	"Smoderate":     0,
 	"Shigh":         -1,
 	"Sveryhight":    -3,
-	"Eintermediate": -2,
+	"Eintermediate": 2,
 	"Eadvanced":     0,
 	"Ebeginner":     0,
 	"Everyadvanced": -2,
@@ -320,9 +320,9 @@ func DeterminineFreqiency(userinfo []string) (sfrequency, bfrequency, dfreqiency
 // return training
 func DefaultTraining(input []string) {
 	s, b, d := GetMEV(input)
-	fmt.Println("[sets per week]Mev for Squat :", s, "Mev for Benchpress", b, "Deadlift", d)
+	fmt.Println("[sets per week]Mev for Squat:", s, "Benchpress:", b, "Deadlift:", d)
 	s, b, d = GetMRV(input)
-	fmt.Println("[sets per week]Mrv for Squat :", s, "Mrv for Benchpress", b, "Deadlift", d)
+	fmt.Println("[sets per week]Mrv for Squat:", s, "Benchpress:", b, "Deadlift:", d)
 	ss, bb, dd := DeterminineFreqiency(input)
-	fmt.Println("[session per week]frequency for Squat :", ss, "Mev for Benchpress", bb, "Deadlift", dd)
+	fmt.Println("[session per week]frequency for Squat:", ss, "Benchpress:", bb, "Deadlift:", dd)
 }
