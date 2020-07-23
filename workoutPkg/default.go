@@ -4,6 +4,7 @@ package workoutPkg
 
 import (
 	"fmt"
+	"math"
 )
 
 var MevSquatStartPoint = []float64{7.5, 5.5, 4.5}    //starting point for squat mev
@@ -172,50 +173,50 @@ var MRVCalcSheet = map[string]float64{
 
 //FrequencySheet
 var FrequencySheet = map[string]float64{
-	"mm":            -1.5,
-	"m":             -1,
-	"f":             1,
-	"ff":            1.5,
-	"Wsuper":        -2,
-	"Wheavy":        -1,
-	"Wmiddle":       0.5,
-	"Wlight":        2.5,
-	"Hverytall":     -2,
-	"Htall":         -1,
-	"Hmedium":       0.5,
-	"Hshort":        2.5,
-	"Slow":          2.5,
-	"Smoderate":     0.5,
-	"Shigh":         -0.5,
-	"Sveryhight":    -2,
-	"Eintermediate": -0,
-	"Eadvanced":     -1,
-	"Ebeginner":     1,
-	"Everyadvanced": -1,
-	"A<19":          2,
-	"A20s":          1,
-	"A30s":          -0.5,
-	"A40s":          -1,
-	"A50+":          -2.5,
-	"Dgood":         0.5,
-	"Davg":          -1,
-	"Dpoor":         -2,
-	"Sleepgood":     0.5,
-	"Sleepavg":      -1,
-	"Sleeppoor":     -2,
-	"Stresslow":     0.5,
-	"Stressavg":     -1,
-	"Stresshigh":    -2,
-	"HW1":           -2,
-	"HW2":           -2,
-	"HW3":           -1,
-	"HW4":           0.5,
-	"HW5":           1.5,
-	"HRA1":          -2.5,
-	"HRA2":          -2,
-	"HRA3":          -1,
-	"HRA4":          0.5,
-	"HRA5":          1.5,
+	"mm":            11,
+	"m":             14,
+	"f":             17,
+	"ff":            21,
+	"Wsuper":        2,
+	"Wheavy":        9,
+	"Wmiddle":       17,
+	"Wlight":        24,
+	"Hverytall":     2,
+	"Htall":         9,
+	"Hmedium":       17,
+	"Hshort":        24,
+	"Slow":          24,
+	"Smoderate":     17,
+	"Shigh":         9,
+	"Sveryhight":    2,
+	"Eintermediate": 16,
+	"Eadvanced":     12,
+	"Ebeginner":     20,
+	"Everyadvanced": 8,
+	"A<19":          25,
+	"A20s":          20,
+	"A30s":          15,
+	"A40s":          11,
+	"A50+":          5,
+	"Dgood":         16,
+	"Davg":          11,
+	"Dpoor":         4,
+	"Sleepgood":     16,
+	"Sleepavg":      11,
+	"Sleeppoor":     4,
+	"Stresslow":     16,
+	"Stressavg":     11,
+	"Stresshigh":    4,
+	"HW1":           4,
+	"HW2":           8,
+	"HW3":           13,
+	"HW4":           17,
+	"HW5":           23,
+	"HRA1":          4,
+	"HRA2":          8,
+	"HRA3":          13,
+	"HRA4":          17,
+	"HRA5":          23,
 }
 
 //make sure starting points has correct value
@@ -235,26 +236,26 @@ GetMEV will calculate user's MEV (Maximum Efective Volume)
 Return squat[]{hypertrophy_MEV int, strength_MEV int, peaking_MEV int}
 
 reference: Juggernaut Training Systems-Program Design Manual p35.
-
+0.5 value get rounded up in MEV
 */
 func GetMEV(userinfo []string) (squatmev, benchmev, deadliftmev []float64) {
-	Change := 0 //start at 0
+	Change := 0.00 //start at 0
 	for _, s := range userinfo {
-		Change = Change + int(MEVCalcSheet[s]) //getting and adding it's value from calcsheet
+		Change = Change + MEVCalcSheet[s] //getting and adding it's value from calcsheet
 		fmt.Println("key :", s, "value :", MEVCalcSheet[s])
 	}
 	fmt.Println("Change : ", Change)
-	s := []float64{MevSquatStartPoint[0] + float64(Change),
-		MevSquatStartPoint[1] + float64(Change),
-		MevSquatStartPoint[2] + float64(Change),
+	s := []float64{MevSquatStartPoint[0] + Change,
+		MevSquatStartPoint[1] + Change,
+		MevSquatStartPoint[2] + Change,
 	}
-	b := []float64{MevBenchStartPoint[0] + float64(Change),
-		MevBenchStartPoint[1] + float64(Change),
-		MevBenchStartPoint[2] + float64(Change),
+	b := []float64{MevBenchStartPoint[0] + Change,
+		MevBenchStartPoint[1] + Change,
+		MevBenchStartPoint[2] + Change,
 	}
-	d := []float64{MevDeadliftStartPoint[0] + float64(Change),
-		MevDeadliftStartPoint[1] + float64(Change),
-		MevDeadliftStartPoint[2] + float64(Change),
+	d := []float64{MevDeadliftStartPoint[0] + Change,
+		MevDeadliftStartPoint[1] + Change,
+		MevDeadliftStartPoint[2] + Change,
 	}
 	return s, b, d
 }
@@ -265,52 +266,55 @@ Return squat[]{hypertrophy_MRV int, strength_MRV int, peaking_MRV int}
 
 reference: Juggernaut Training Systems-Program Design Manual p35.
 
+
 */
 func GetMRV(userinfo []string) (squatmev, benchmev, deadliftmev []float64) {
-	Change := 0 //start at 0
+	Change := 0.00 //start at 0
 	for _, s := range userinfo {
-		Change = Change + int(MRVCalcSheet[s]) //getting and adding it's value from calcsheet
+		Change = Change + MRVCalcSheet[s] //getting and adding it's value from calcsheet
 		fmt.Println("key :", s, "value :", MRVCalcSheet[s])
 	}
 	fmt.Println("Change : ", Change)
-	s := []float64{MrvSquatStartPoint[0] + float64(Change),
-		MrvSquatStartPoint[1] + float64(Change),
-		MrvSquatStartPoint[2] + float64(Change),
+	s := []float64{MrvSquatStartPoint[0] + Change,
+		MrvSquatStartPoint[1] + Change,
+		MrvSquatStartPoint[2] + Change,
 	}
-	b := []float64{MrvBenchStartPoint[0] + float64(Change),
-		MrvBenchStartPoint[1] + float64(Change),
-		MrvBenchStartPoint[2] + float64(Change),
+	b := []float64{MrvBenchStartPoint[0] + Change,
+		MrvBenchStartPoint[1] + Change,
+		MrvBenchStartPoint[2] + Change,
 	}
-	d := []float64{MrvDeadliftStartPoint[0] + float64(Change),
-		MrvDeadliftStartPoint[1] + float64(Change),
-		MrvDeadliftStartPoint[2] + float64(Change),
+	d := []float64{MrvDeadliftStartPoint[0] + Change,
+		MrvDeadliftStartPoint[1] + Change,
+		MrvDeadliftStartPoint[2] + Change,
 	}
 	return s, b, d
 }
 
 //DeterminingFrequency
-func DeterminineFreqiency(userinfo []string) (sfrequency, bfrequency, dfreqiency float64) {
-	Change := 3 //start at 0
+func GetFreqiency(userinfo []string) (sfrequency, bfrequency, dfreqiency float64) {
+	change := 0.00 //start at 0
 	for _, s := range userinfo {
-		Change = Change + int(FrequencySheet[s]) //getting and adding it's value from calcsheet
-		fmt.Println("key :", s, "value :", FrequencySheet[s])
+		change = change + FrequencySheet[s] //getting and adding it's value from calcsheet
+		fmt.Println("fkey :", s, "value :", FrequencySheet[s])
 	}
-	fmt.Println("Change : ", Change)
-	if Change < -2 {
+	//caclculate the avg of the info
+	change = math.Round((change/float64(len(userinfo)) + 2))
+
+	fmt.Println("Change for frequency : ", change)
+	if change >= 5 && change < 10 {
 		sfrequency, bfrequency, dfreqiency = 1, 2, 1
-		fmt.Println(sfrequency, bfrequency, dfreqiency)
-	} else if Change < 0 && Change >= -2 {
+	} else if change >= 10 && change < 13 {
+		sfrequency, bfrequency, dfreqiency = 1.5, 2.5, 1.5
+	} else if change >= 13 && change < 15 {
+		sfrequency, bfrequency, dfreqiency = 2, 3, 1.5
+	} else if change >= 15 && change < 17 {
 		sfrequency, bfrequency, dfreqiency = 2, 3, 2
-		fmt.Println(sfrequency, bfrequency, dfreqiency)
-	} else if Change >= 0 && Change < 2 {
-		sfrequency, bfrequency, dfreqiency = 3, 4, 2
-		fmt.Println(sfrequency, bfrequency, dfreqiency)
-	} else if Change >= 2 && Change < 3 {
-		sfrequency, bfrequency, dfreqiency = 3, 4, 3
-		fmt.Println(sfrequency, bfrequency, dfreqiency)
-	} else if Change >= 2 && Change < 3 {
+	} else if change >= 17 && change < 19 {
+		sfrequency, bfrequency, dfreqiency = 2.5, 3.5, 2
+	} else if change >= 19 && change < 25 {
+		sfrequency, bfrequency, dfreqiency = 3, 4, 2.5
 	} else {
-		sfrequency, bfrequency, dfreqiency = 4, 5, 3
+		sfrequency, bfrequency, dfreqiency = 3.5, 4.5, 3
 	}
 	return sfrequency, bfrequency, dfreqiency
 }
@@ -321,8 +325,8 @@ func DeterminineFreqiency(userinfo []string) (sfrequency, bfrequency, dfreqiency
 func DefaultTraining(input []string) {
 	s, b, d := GetMEV(input)
 	fmt.Println("[sets per week]Mev for Squat:", s, "Benchpress:", b, "Deadlift:", d)
-	s, b, d = GetMRV(input)
-	fmt.Println("[sets per week]Mrv for Squat:", s, "Benchpress:", b, "Deadlift:", d)
-	ss, bb, dd := DeterminineFreqiency(input)
+	s1, b1, d1 := GetMRV(input)
+	fmt.Println("[sets per week]Mrv for Squat:", s1, "Benchpress:", b1, "Deadlift:", d1)
+	ss, bb, dd := GetFreqiency(input)
 	fmt.Println("[session per week]frequency for Squat:", ss, "Benchpress:", bb, "Deadlift:", dd)
 }

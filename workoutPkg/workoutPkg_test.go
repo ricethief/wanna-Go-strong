@@ -32,3 +32,13 @@ func TestMarisaExampleMRV(t *testing.T) {
 	}
 
 }
+
+func TestGetFrequency(t *testing.T) {
+	input := []string{"ff", "Wmiddle", "Hmedium", "Smoderate", "Eintermediate",
+		"A20s", "Davg", "Sleepavg", "Stresslow", "HW2", "HRA2"}
+	s, b, d := GetFreqiency(input)
+	if s != 2.5 || b != 3.5 || d != 2 {
+		t.Error("Frequency Test Failed")
+	}
+
+}
