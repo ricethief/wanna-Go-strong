@@ -1,6 +1,6 @@
 // Package workoutPkg
 // It has functions for template generating
-package workoutPkg
+package model
 
 import (
 	"fmt"
