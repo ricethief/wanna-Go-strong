@@ -1,5 +1,3 @@
-// Package workoutPkg
-// It has functions for template generating
 package model
 
 import (
@@ -265,8 +263,6 @@ GetMRV will calculate user's MRV (Maximum Recoverable Volume)
 Return squat[]{hypertrophy_MRV int, strength_MRV int, peaking_MRV int}
 
 reference: Juggernaut Training Systems-Program Design Manual p35.
-
-
 */
 func GetMRV(userinfo []string) (squatmev, benchmev, deadliftmev []float64) {
 	Change := 0.00 //start at 0

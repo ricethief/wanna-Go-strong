@@ -64,6 +64,8 @@ func TestAddDay(t *testing.T) {
 func TestGetMEV(t *testing.T) {
 	input := []string{"ff", "Wmiddle", "Hmedium", "Smoderate", "Eintermediate",
 		"A20s", "Davg", "Sleepavg", "Stresslow", "HW2", "HRA2"}
+	input = []string{"mm", "Wmiddle", "Hmedium", "Smoderate", "Eintermediate",
+		"A30s", "Dgood", "Sleepgood", "Stresslavg", "HW3", "HRA3"}
 
 	DefaultTraining(input)
 }
