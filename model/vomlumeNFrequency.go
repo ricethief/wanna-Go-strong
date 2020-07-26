@@ -217,6 +217,13 @@ var FrequencySheet = map[string]float64{
 	"HRA5":          23,
 }
 
+//struct
+type VolumeNFrequency struct {
+	Mev       [][]float64 `json:"mev"`
+	Mrv       [][]float64 `json:"mrv"`
+	Frequency []float64   `json:"frequency"`
+}
+
 //make sure starting points has correct value
 func reset() {
 
@@ -240,7 +247,7 @@ func GetMEV(userinfo []string) (squatmev, benchmev, deadliftmev []float64) {
 	Change := 0.00 //start at 0
 	for _, s := range userinfo {
 		Change = Change + MEVCalcSheet[s] //getting and adding it's value from calcsheet
-		fmt.Println("key :", s, "value :", MEVCalcSheet[s])
+		//	fmt.Println("key :", s, "value :", MEVCalcSheet[s])
 	}
 	fmt.Println("Change : ", Change)
 	s := []float64{MevSquatStartPoint[0] + Change,
@@ -268,7 +275,7 @@ func GetMRV(userinfo []string) (squatmev, benchmev, deadliftmev []float64) {
 	Change := 0.00 //start at 0
 	for _, s := range userinfo {
 		Change = Change + MRVCalcSheet[s] //getting and adding it's value from calcsheet
-		fmt.Println("key :", s, "value :", MRVCalcSheet[s])
+		//	fmt.Println("key :", s, "value :", MRVCalcSheet[s])
 	}
 	fmt.Println("Change : ", Change)
 	s := []float64{MrvSquatStartPoint[0] + Change,
@@ -291,7 +298,7 @@ func GetFreqiency(userinfo []string) (sfrequency, bfrequency, dfreqiency float64
 	change := 0.00 //start at 0
 	for _, s := range userinfo {
 		change = change + FrequencySheet[s] //getting and adding it's value from calcsheet
-		fmt.Println("fkey :", s, "value :", FrequencySheet[s])
+		//	fmt.Println("fkey :", s, "value :", FrequencySheet[s])
 	}
 	//caclculate the avg of the info
 	change = math.Round((change/float64(len(userinfo)) + 2))
@@ -315,14 +322,22 @@ func GetFreqiency(userinfo []string) (sfrequency, bfrequency, dfreqiency float64
 	return sfrequency, bfrequency, dfreqiency
 }
 
-// DefaultTraining will generate basic strenth training
-// Parameters sex int,height float64,weight float64,exp int,lenOfWeek int
-// return training
-func DefaultTraining(input []string) {
+// NewVolumeNFrequency returns user's MEV,MRV,FREQUENCY details
+func NewVolumeNFrequency(input []string) (vNF VolumeNFrequency) {
 	s, b, d := GetMEV(input)
 	fmt.Println("[sets per week]Mev for Squat:", s, "Benchpress:", b, "Deadlift:", d)
 	s1, b1, d1 := GetMRV(input)
 	fmt.Println("[sets per week]Mrv for Squat:", s1, "Benchpress:", b1, "Deadlift:", d1)
 	ss, bb, dd := GetFreqiency(input)
 	fmt.Println("[session per week]frequency for Squat:", ss, "Benchpress:", bb, "Deadlift:", dd)
+	mev := [][]float64{s, b, d}
+	mrv := [][]float64{s1, b1, d1}
+	frequency := []float64{ss, bb, dd}
+
+	vNF = VolumeNFrequency{
+		Mev:       mev,
+		Mrv:       mrv,
+		Frequency: frequency,
+	}
+	return vNF
 }

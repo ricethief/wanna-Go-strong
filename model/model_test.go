@@ -62,12 +62,14 @@ func TestAddDay(t *testing.T) {
 
 //Testing GetMev
 func TestGetMEV(t *testing.T) {
-	input := []string{"ff", "Wmiddle", "Hmedium", "Smoderate", "Eintermediate",
-		"A20s", "Davg", "Sleepavg", "Stresslow", "HW2", "HRA2"}
-	input = []string{"mm", "Wmiddle", "Hmedium", "Smoderate", "Eintermediate",
-		"A30s", "Dgood", "Sleepgood", "Stresslavg", "HW3", "HRA3"}
+	//	input := []string{"ff", "Wmiddle", "Hmedium", "Smoderate", "Eintermediate",
+	//		"A20s", "Davg", "Sleepavg", "Stresslow", "HW2", "HRA2"}
+	//		input2 := []string{"mm", "Wmiddle", "Hmedium", "Smoderate", "Eintermediate",
+	//		"A30s", "Dgood", "Sleepgood", "Stresslavg", "HW3", "HRA3"}
 
-	DefaultTraining(input)
+	input3 := []string{"mm", "Wmiddle", "Hmedium", "Shigh", "Eadvanced",
+		"A20s", "Dgood", "Sleepavg", "Stresslavg", "HW4", "HRA3"}
+	DefaultTraining(input3)
 }
 
 func TestMarisaExampleMRV(t *testing.T) {
