@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"wanna-Go-strong/model"
@@ -28,6 +29,13 @@ func getVolumNFrequency(w http.ResponseWriter, r *http.Request) {
 	input := []string{gender, wt, ht, strength, exp, age, diet,
 		sleep, stress, hw, hra}
 	json.NewEncoder(w).Encode(model.NewVolumeNFrequency(input)) //passing json
+
+	parsedTemplate, _ := template.ParseFiles("templates/index.html")
+	err := parsedTemplate.Execute(w, model.NewVolumeNFrequency(input))
+	if err != nil {
+		log.Printf("Error occurred while executing the template or writing its output : ", err)
+		return
+	}
 }
 
 func testPostArticles(w http.ResponseWriter, r *http.Request) {
@@ -36,7 +44,9 @@ func testPostArticles(w http.ResponseWriter, r *http.Request) {
 
 func handleRequest() {
 	myRouter := mux.NewRouter().StrictSlash(true)
+
 	myRouter.HandleFunc("/getVNF/{gender}/{wt}/{ht}/{strength}/{exp}/{age}/{diet}/{sleep}/{stress}/{hw}/{hra}", getVolumNFrequency)
+	myRouter.PathPrefix("/").Handler(http.StripPrefix("/static", http.FileServer(http.Dir("static/"))))
 	myRouter.HandleFunc("/getvnf/{hra}", getVolumNFrequency)
 	myRouter.HandleFunc("/articles", testPostArticles).Methods("POST")
 	log.Fatal(http.ListenAndServe(":8082", myRouter))
