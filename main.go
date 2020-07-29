@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -11,11 +10,12 @@ import (
 )
 
 //compile templates on start
-var templates = template.Must(template.ParseFiles("templates/header.html", "templates/footer.html", "templates/about.html", "templates/main.html"))
+var templates = template.Must(template.ParseFiles("templates/header.html", "templates/footer.html", "templates/about.html", "templates/main.html", "templates/index.html"))
 
 //A Page structure
 type Page struct {
 	Title string
+	Vnf   model.VolumeNFrequency
 }
 
 //Display the named template
@@ -33,7 +33,6 @@ func aboutHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getvnfHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "<h1>We Have Volume as jason</h1> \n")
 	vars := mux.Vars(r)
 	gender := vars["gender"]
 	wt := vars["wt"]
@@ -49,13 +48,9 @@ func getvnfHandler(w http.ResponseWriter, r *http.Request) {
 
 	input := []string{gender, wt, ht, strength, exp, age, diet,
 		sleep, stress, hw, hra}
+	vnf := model.NewVolumeNFrequency(input)
 
-	parsedTemplate, _ := template.ParseFiles("templates/index.html")
-	err := parsedTemplate.Execute(w, model.NewVolumeNFrequency(input))
-	if err != nil {
-		log.Printf("Error occurred while executing the template or writing its output : ", err)
-		return
-	}
+	display(w, "index", &Page{Title: "index", Vnf: vnf})
 }
 
 func handleRequest() {
