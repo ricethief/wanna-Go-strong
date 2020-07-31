@@ -3,17 +3,19 @@ body {
     background-color: #8ac7e6;
 }
 
-ul.topnav {
+.topnav {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: #00334d;
+  display:grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+  grid-template-areas:
+  "logo vnf about . login";
 }
 
-ul.topnav li {float: left;}
-
-ul.topnav li a {
+.topnav div a {
   display: block;
   color: white;
   text-align: center;
@@ -24,12 +26,9 @@ ul.topnav li a {
  text-decoration: none;
 }
 
-ul.topnav li a:hover:not(.active) {background-color: #2eb8b8;}
+.topnav div a:hover:not(.active) {background-color: #2eb8b8;}
 
-ul.topnav li a.active {background-color: #4CAF50;}
-
-ul.topnav li.right {float: right;}
-
+.topnav div a.active {background-color: #4CAF50;}
  
 
 .grid {
@@ -47,12 +46,18 @@ ul.topnav li.right {float: right;}
 .nav{
   grid-area: nav;
 }
-.content{
 
+.logo{grid-area: logo;}
+.vnf{grid-area: vnf;}
+.about{grid-area: about;}
+.login{grid-area: login;}
+
+.content{
   text-align: center;
   padding: 14px 16px;
   grid-area: content;
 }
+
 .footer{
 
   text-align: center;
@@ -64,8 +69,19 @@ ul.topnav li.right {float: right;}
 @media only screen and (max-width: 600px)
 {
     /*it change navbar*/
-    ul.topnav li.right, 
-    ul.topnav li {float: none;}
+.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #00334d;
+  display:grid;
+  grid-template-columns:1fr 3fr 1fr;
+  grid-template-areas:
+  "logo logo login"
+  "about about about"
+  "vnf vnf vnf";
+}
 
 .grid {
   display:grid;
@@ -77,4 +93,4 @@ ul.topnav li.right {float: right;}
   "footer footer";
 }
   
-
+}
