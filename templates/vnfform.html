@@ -1,0 +1,116 @@
+{{define "vnfform"}}
+{{template "header" .}}
+<div class="content">
+	<h2>Wanna Go Strong?</h2>
+    <div>
+        <form class="form" method="POST">
+            <div class="vnfform-control">
+                <div class="sex">
+                 <label for="sexid">Sex:</label>
+                    <select id="sexid" name="sexn">
+                    <option value="ff">Female</option>
+                    <option value="f">Feminine</option>
+                    <option value="m">Masculine</option>
+                    <option value="mm">Male</option>
+                    </select>
+                </div>
+                <div class="weightt">
+                    <label for="weightid">Weight Class:</label>
+                    <select id="weightid" name="weightn">
+                    <option value="Wsuper">Super</option>
+                    <option value="Wheavy">Heavy</option>
+                    <option value="Wmiddle">Middle</option>
+                    <option value="Wlight">Light</option>
+                    </select>
+                </div>
+                <div class="heightt">
+                    <label for="heightid">Height:</label>
+                    <select id="heightid" name="heightn">
+                    <option value="Hverytall">Very tall</option>
+                    <option value="Htall">Tall</option>
+                    <option value="Hmedium">Medium</option>
+                    <option value="Hshort">Short</option>
+                    </select>
+                </div>
+                <div class="strength">
+                    <label for="strengid">Strength Level:</label>
+                    <select id="strengid" name="strengthn">
+                    <option value="Slow">Low</option>
+                    <option value="Smoderate">Moderate</option>
+                    <option value="Shigh">High</option>
+                    <option value="Sveryhight">Very High</option>
+                    </select>
+                </div>
+                <div class="experience">
+                    <label for="experienceid">Experience:</label>
+                    <select id="experienceid" name="experiencen">
+                    <option value="Ebeginner">Beginner</option>
+                    <option value="Eintermediate">Intermediate</option>
+                    <option value="Eadvanced">Advanced</option>
+                    <option value="Everyadvanced">Very Advanced</option>
+                    </select>
+                </div>
+                <div class="age">
+                    <label for="ageid">Age:</label>
+                    <select id="ageid" name="agen">
+                    <option value="A<19">19-</option>
+                    <option value="A20s">20s</option>
+                    <option value="A30s">30s</option>
+                    <option value="A40s">40s</option>
+                    <option value="A50+">50+</option>
+                    </select>
+                </div>
+                <div class="diet">
+                    <label for="dietid">Diet:</label>
+                    <select id="dietid" name="dietn">
+                    <option value="Dgood">Good</option>
+                    <option value="Davg">Avridge</option>
+                    <option value="Dpoor">Poor</option>
+                    </select>
+                </div>
+                <div class="sleep">
+                    <label for="sleepid">Sleep:</label>
+                    <select id="sleepid" name="sleepn">
+                    <option value="Sleepgood">Good</option>
+                    <option value="Sleepavg">Avridge</option>
+                    <option value="Sleeppoor">Poor</option>
+                    </select>
+                </div>
+                <div class="stress">
+                    <label for="stressid">Stress:</label>
+                    <select id="stressid" name="stressn">
+                    <option value="Stresslow">Low</option>
+                    <option value="Stressavg">Avridge</option>
+                    <option value="Stresshigh">High</option>
+                    </select>
+                </div>
+                <div class="hw">
+                    <label for="hwid">Historical Workload:</label>
+                    <select id="hwid" name="hwn">
+                    <option value="HW1">HW1</option>
+                    <option value="HW2">HW2</option>
+                    <option value="HW3">HW3</option>
+                    <option value="HW4">HW4</option>
+                    <option value="HW5">HW5</option>
+                    </select>
+                </div>
+                <div class="hra">
+                    <label for="hraid">Historical Recovery Ability:</label>
+                    <select id="hraid" name="hran">
+                    <option value="HRA1">HRA1</option>
+                    <option value="HRA2">HRA2</option>
+                    <option value="HRA3">HRA3</option>
+                    <option value="HRA4">HRA4</option>
+                    <option value="HRA5">HRA5</option>
+                   </select>
+                </div>
+                <div class="getvnfSubmit">
+                    <input type="submit" value="Get Volume And Frequency">
+                </div>
+             </div>
+        </form> 
+    </div>
+</div>
+{{template "footer" .}}
+{{end}}
+

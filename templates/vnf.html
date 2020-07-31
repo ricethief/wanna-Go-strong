@@ -1,0 +1,68 @@
+{{define "vnf"}}
+{{template "header" .}}
+<div class="content">
+	<h2>this page returns Volumes and Frequency</h2>
+    <div>
+        <table>
+<thead>
+  <tr>
+    <th colspan="2"></th>
+    <th>Hypertropy</th>
+    <th>Strength</th>
+    <th>Peak</th>
+    <th>Frequency<br></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="2">Squat</td>
+    <td>MEV</td>
+    <td>{{.Vnf.Mev}}</td>
+    <td>{{.Vnf.Mev}}</td>
+    <td>{{.Vnf.Mev}}</td>
+    <td>{{.Vnf.Frequency}}<br></td>
+  </tr>
+  <tr>
+    <td>MRV</td>
+    <td>{{.Vnf.Mrv}}</td>
+    <td>{{.Vnf.Mrv}}</td>
+    <td>{{.Vnf.Mrv}}</td>
+    <td>{{.Vnf.Frequency}}</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Bench Press</td>
+    <td>MEV</td>
+    <td>{{.Vnf.Mev}}</td>
+    <td>{{.Vnf.Mev}}</td>
+    <td>{{.Vnf.Mev}}</td>
+    <td>{{.Vnf.Frequency}}</td>
+  </tr>
+  <tr>
+    <td>MRV</td>
+    <td>{{.Vnf.Mrv}}</td>
+    <td>{{.Vnf.Mrv}}</td>
+    <td>{{.Vnf.Mrv}}</td>
+    <td>{{.Vnf.Frequency}}</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Deadlift</td>
+    <td>MEV</td>
+    <td>{{.Vnf.Mev}}</td>
+    <td>{{.Vnf.Mev}}</td>
+    <td>{{.Vnf.Mev}}</td>
+    <td>{{.Vnf.Frequency}}</td>
+  </tr>
+  <tr>
+    <td>MRV</td>
+    <td>{{.Vnf.Mrv}}</td>
+    <td>{{.Vnf.Mrv}}</td>
+    <td>{{.Vnf.Mrv}}</td>
+    <td>{{.Vnf.Frequency}}</td>
+  </tr>
+</tbody>
+</table>
+    </div>
+</div>
+{{template "footer" .}}
+{{end}}
+
