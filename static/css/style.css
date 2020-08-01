@@ -1,8 +1,11 @@
 body {
     margin:0;
     background-color: #8ac7e6;
+    width: 100%;
 }
-
+.div{
+    overflow:auto;
+}
 .topnav {
   list-style-type: none;
   margin: 0;
@@ -23,7 +26,7 @@ body {
   font-family: 'Quicksand', sans-serif;
   font-weight: 800;
   font-size: auto;
- text-decoration: none;
+  text-decoration: none;
 }
 
 .topnav div a:hover:not(.active) {background-color: #2eb8b8;}
@@ -63,10 +66,35 @@ body {
 .hw{grid-area:hw;}
 .hra{grid-area:hra;}
 .getvnfSubmit{grid-area:submit;}
+.pageHeader{grid-area:pageh1;}
+
+#vnftable {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 2vw;
+  border-collapse: collapse;
+  grid-area:nvfTable;
+}
+
 .content{
   text-align: center;
-  padding: 14px 16px;
   grid-area: content;
+  display:grid;
+  grid-template-areas:
+  "pageh1"
+  "nvfTable"
+  ;
+
+}
+#vnftable td, #vnftable th {
+  border: 3px solid #37667d;
+  color: #37667d;
+}
+
+#vnftable tr:nth-child(even){background-color: #91c8e3;}
+#vnftable td:hover {background-color: #bd9c62;}
+#vnftable th {
+  background-color: #37667d;
+  color: white;
 }
 
 .vnfform-control{

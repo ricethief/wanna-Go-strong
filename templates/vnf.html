@@ -1,67 +1,58 @@
 {{define "vnf"}}
 {{template "header" .}}
 <div class="content">
-	<h2>this page returns Volumes and Frequency</h2>
-    <div>
-        <table>
-<thead>
+	<h2 class="pageHeader">this page returns Volumes and Frequency</h2>
+<table id="vnftable">
   <tr>
-    <th colspan="2"></th>
+    <th colspan="2">sets per weeks</th>
     <th>Hypertropy</th>
     <th>Strength</th>
     <th>Peak</th>
     <th>Frequency<br></th>
   </tr>
-</thead>
-<tbody>
   <tr>
     <td rowspan="2">Squat</td>
     <td>MEV</td>
-    <td>{{.Vnf.Mev}}</td>
-    <td>{{.Vnf.Mev}}</td>
-    <td>{{.Vnf.Mev}}</td>
-    <td>{{.Vnf.Frequency}}<br></td>
+    <td>{{.Vnf.Mev.Squat.H}}</td>
+    <td>{{.Vnf.Mev.Squat.S}}</td>
+    <td>{{.Vnf.Mev.Squat.P}}</td>
+    <td rowspan="2">{{.Vnf.Frequency.SquatF}}<br></td>
   </tr>
   <tr>
     <td>MRV</td>
-    <td>{{.Vnf.Mrv}}</td>
-    <td>{{.Vnf.Mrv}}</td>
-    <td>{{.Vnf.Mrv}}</td>
-    <td>{{.Vnf.Frequency}}</td>
+    <td>{{.Vnf.Mrv.Squat.H}}</td>
+    <td>{{.Vnf.Mrv.Squat.S}}</td>
+    <td>{{.Vnf.Mrv.Squat.P}}</td>
   </tr>
   <tr>
     <td rowspan="2">Bench Press</td>
     <td>MEV</td>
-    <td>{{.Vnf.Mev}}</td>
-    <td>{{.Vnf.Mev}}</td>
-    <td>{{.Vnf.Mev}}</td>
-    <td>{{.Vnf.Frequency}}</td>
+    <td>{{.Vnf.Mev.Benchpress.H}}</td>
+    <td>{{.Vnf.Mev.Benchpress.S}}</td>
+    <td>{{.Vnf.Mev.Benchpress.P}}</td>
+    <td rowspan="2">{{.Vnf.Frequency.BenchpressF}}<br></td>
   </tr>
   <tr>
     <td>MRV</td>
-    <td>{{.Vnf.Mrv}}</td>
-    <td>{{.Vnf.Mrv}}</td>
-    <td>{{.Vnf.Mrv}}</td>
-    <td>{{.Vnf.Frequency}}</td>
+    <td>{{.Vnf.Mrv.Benchpress.H}}</td>
+    <td>{{.Vnf.Mrv.Benchpress.S}}</td>
+    <td>{{.Vnf.Mrv.Benchpress.P}}</td>
   </tr>
   <tr>
     <td rowspan="2">Deadlift</td>
     <td>MEV</td>
-    <td>{{.Vnf.Mev}}</td>
-    <td>{{.Vnf.Mev}}</td>
-    <td>{{.Vnf.Mev}}</td>
-    <td>{{.Vnf.Frequency}}</td>
+    <td>{{.Vnf.Mev.Deadlift.H}}</td>
+    <td>{{.Vnf.Mev.Deadlift.S}}</td>
+    <td>{{.Vnf.Mev.Deadlift.P}}</td>
+    <td rowspan="2">{{.Vnf.Frequency.DeadliftF}}<br></td>
   </tr>
   <tr>
     <td>MRV</td>
-    <td>{{.Vnf.Mrv}}</td>
-    <td>{{.Vnf.Mrv}}</td>
-    <td>{{.Vnf.Mrv}}</td>
-    <td>{{.Vnf.Frequency}}</td>
+    <td>{{.Vnf.Mrv.Deadlift.H}}</td>
+    <td>{{.Vnf.Mrv.Deadlift.S}}</td>
+    <td>{{.Vnf.Mrv.Deadlift.P}}</td>
   </tr>
-</tbody>
 </table>
-    </div>
 </div>
 {{template "footer" .}}
 {{end}}

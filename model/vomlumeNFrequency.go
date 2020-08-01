@@ -218,10 +218,40 @@ var FrequencySheet = map[string]float64{
 }
 
 //struct
+type Squat struct {
+	H float64 `json:"h"`
+	S float64 `json:"s"`
+	P float64 `json:"p"`
+}
+type Benchpress struct {
+	H float64 `json:"h"`
+	S float64 `json:"s"`
+	P float64 `json:"p"`
+}
+type Deadlift struct {
+	H float64 `json:"h"`
+	S float64 `json:"s"`
+	P float64 `json:"p"`
+}
+type Frequency struct {
+	SquatF      float64 `json:"squatF"`
+	BenchpressF float64 `json:"BenchpressF"`
+	DeadliftF   float64 `json:"deadliftF"`
+}
+type Mev struct {
+	Squat      Squat      `json:"squat"`
+	Benchpress Benchpress `json:"benchpress"`
+	Deadlift   Deadlift   `json:"deadlift"`
+}
+type Mrv struct {
+	Squat      Squat      `json:"squat"`
+	Benchpress Benchpress `json:"benchpress"`
+	Deadlift   Deadlift   `json:"deadlift"`
+}
 type VolumeNFrequency struct {
-	Mev       [][]float64 `json:"mev"`
-	Mrv       [][]float64 `json:"mrv"`
-	Frequency []float64   `json:"frequency"`
+	Mev       Mev       `json:"mev"`
+	Mrv       Mrv       `json:"mrv"`
+	Frequency Frequency `json:"frequency"`
 }
 
 //make sure starting points has correct value
@@ -330,14 +360,47 @@ func NewVolumeNFrequency(input []string) (vNF VolumeNFrequency) {
 	fmt.Println("[sets per week]Mrv for Squat:", s1, "Benchpress:", b1, "Deadlift:", d1)
 	ss, bb, dd := GetFreqiency(input)
 	fmt.Println("[session per week]frequency for Squat:", ss, "Benchpress:", bb, "Deadlift:", dd)
-	mev := [][]float64{s, b, d}
-	mrv := [][]float64{s1, b1, d1}
-	frequency := []float64{ss, bb, dd}
 
 	vNF = VolumeNFrequency{
-		Mev:       mev,
-		Mrv:       mrv,
-		Frequency: frequency,
+		Mev: Mev{
+			Squat: Squat{
+				H: s[0],
+				S: s[1],
+				P: s[2],
+			},
+			Benchpress: Benchpress{
+				H: b[0],
+				S: b[1],
+				P: b[2],
+			},
+			Deadlift: Deadlift{
+				H: d[0],
+				S: d[1],
+				P: d[2],
+			},
+		},
+		Mrv: Mrv{
+			Squat: Squat{
+				H: s1[0],
+				S: s1[1],
+				P: s1[2],
+			},
+			Benchpress: Benchpress{
+				H: b1[0],
+				S: b1[1],
+				P: b1[2],
+			},
+			Deadlift: Deadlift{
+				H: d1[0],
+				S: d1[1],
+				P: d1[2],
+			},
+		},
+		Frequency: Frequency{
+			SquatF:      ss,
+			BenchpressF: bb,
+			DeadliftF:   dd,
+		},
 	}
 	return vNF
 }
